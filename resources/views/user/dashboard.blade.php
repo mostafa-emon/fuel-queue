@@ -48,6 +48,28 @@
                             Book Now
                         </button>
                     </form>
+                    <div class="mt-8 bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                        <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">Current Availability (Today)</h3>
+                        <div class="space-y-4">
+                            @foreach($availabilities as $avail)
+                                <div class="border-b border-gray-100 pb-2 last:border-0">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-semibold text-gray-700">{{ $avail->fuelType->name }} - {{ $avail->vehicleType->name }}</span>
+                                        <span class="text-xs font-bold {{ ($avail->max_capacity - $avail->booked_count) > 0 ? 'text-green-600' : 'text-red-600' }}">
+                                            {{ $avail->max_capacity - $avail->booked_count }} Left
+                                        </span>
+                                    </div>
+                                    <div class="w-full h-1.5 bg-gray-100 rounded-full mt-1 overflow-hidden">
+                                        <div class="h-full bg-indigo-500" style="width: {{ ($avail->booked_count / $avail->max_capacity) * 100 }}%"></div>
+                                    </div>
+                                    <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-tighter">{{ $avail->booked_count }} booked of {{ $avail->max_capacity }} total</p>
+                                </div>
+                            @endforeach
+                            @if(count($availabilities) === 0)
+                                <p class="text-sm text-gray-400 italic">No availability set for today.</p>
+                            @endif
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Active Bookings -->

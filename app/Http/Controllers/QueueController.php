@@ -20,7 +20,16 @@ class QueueController extends Controller
             ->get();
         
         $today = now()->format('Y-m-d');
-        $availabilities = DailyAcceptance::where('date', $today)->get();
+        $availabilities = DailyAcceptance::where('date', $today)
+            ->with(['fuelType', 'vehicleType'])
+            ->get()
+            ->map(function($item) {
+                $item->booked_count = QueueBooking::whereDate('created_at', $item->date)
+                    ->where('fuel_type_id', $item->fuel_type_id)
+                    ->where('vehicle_type_id', $item->vehicle_type_id)
+                    ->count();
+                return $item;
+            });
 
         return view('user.dashboard', compact('fuelTypes', 'vehicleTypes', 'bookings', 'availabilities'));
     }
