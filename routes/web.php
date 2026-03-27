@@ -8,9 +8,7 @@ use App\Http\Controllers\QueueController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\PublicController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PublicController::class, 'index'])->name('home');
 
 Route::get('/status', [PublicController::class, 'index'])->name('status');
 
