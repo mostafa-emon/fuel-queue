@@ -41,7 +41,7 @@
                 <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                     Fuel Queue Status
                 </h1>
-                <p class="text-slate-400 mt-2">Real-time availability for {{ now()->format('d M, Y') }}</p>
+                <p class="text-slate-400 mt-2">Real-time availability for {{ now()->format('d-m-Y') }}</p>
             </div>
             <div class="hidden md:flex gap-4">
                 <a href="{{ route('login') }}" class="glass px-6 py-2 rounded-full hover:bg-white/10 transition">Login</a>

@@ -28,7 +28,8 @@
                         @csrf
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Fuel Type</label>
-                            <select name="fuel_type_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <select name="fuel_type_id" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                <option value="" disabled selected>-- select fuel type --</option>
                                 @foreach($fuelTypes as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                                 @endforeach
@@ -36,7 +37,8 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Vehicle Type</label>
-                            <select name="vehicle_type_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <select name="vehicle_type_id" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                <option value="" disabled selected>-- select vehicle type --</option>
                                 @foreach($vehicleTypes as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                                 @endforeach
@@ -68,7 +70,7 @@
 
                                     @if($booking->status === 'pending')
                                         <div class="flex flex-col items-center justify-center p-4 bg-gray-50 rounded-xl">
-                                            {!! QrCode::size(150)->generate($booking->qr_token) !!}
+                                            {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(150)->generate($booking->qr_token) !!}
                                             <p class="mt-4 text-xs font-mono text-gray-400">{{ $booking->qr_token }}</p>
                                             <p class="mt-2 text-sm text-center text-gray-600">Show this code at the pump</p>
                                         </div>
