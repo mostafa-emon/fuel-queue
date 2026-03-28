@@ -36,16 +36,16 @@
 </head>
 <body class="p-4 md:p-8">
     <div class="max-w-6xl mx-auto">
-        <header class="flex justify-between items-center mb-12">
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
             <div>
-                <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                     Fuel Queue Status
                 </h1>
-                <p class="text-slate-400 mt-2">Real-time availability for {{ now()->format('d-m-Y') }}</p>
+                <p class="text-slate-400 mt-2 text-sm md:text-base">Real-time availability for {{ now()->format('d-m-Y') }}</p>
             </div>
-            <div class="hidden md:flex gap-4">
-                <a href="{{ route('login') }}" class="glass px-6 py-2 rounded-full hover:bg-white/10 transition">Login</a>
-                <a href="{{ route('register') }}" class="bg-blue-600 px-6 py-2 rounded-full hover:bg-blue-700 transition">Book Slot</a>
+            <div class="flex gap-3 md:gap-4 w-full md:w-auto">
+                <a href="{{ route('login') }}" class="flex-1 md:flex-none glass px-4 md:px-6 py-2 rounded-full hover:bg-white/10 transition text-center text-sm md:text-base">Login</a>
+                <a href="{{ route('register') }}" class="flex-1 md:flex-none bg-blue-600 px-4 md:px-6 py-2 rounded-full hover:bg-blue-700 transition text-center text-sm md:text-base">Book Slot</a>
             </div>
         </header>
 
